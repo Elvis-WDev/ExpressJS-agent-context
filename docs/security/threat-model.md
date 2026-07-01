@@ -22,6 +22,7 @@
 | --- | --- | --- |
 | Token leakage | Provider abuse | Keep tokens server-side and out of logs. |
 | Unauthorized data access | Privacy breach | Enforce auth middleware and permission checks. |
-| Invalid imports | Data corruption | Validate and chunk imports. |
+| Unvalidated bulk input | Data corruption | Validate, chunk, and report progress. |
+| Hand-rolled authentication | Account compromise | Use Better Auth and documented auth middleware. |
+| Overprivileged database user | Production data loss | Reduce privileges after migrations. |
 | External outage | Workflow failure | Normalize errors and expose retry-safe states. |
-

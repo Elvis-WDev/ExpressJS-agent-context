@@ -15,10 +15,14 @@
 - Data persistence.
 - Background jobs and cancellation.
 - External service failure modes.
+- Better Auth protected-route behavior.
+- Prisma repository behavior for critical writes.
+- PostgreSQL migration assumptions.
+- React Hook Form validation paths.
 
 ## Test Data
 
 - Use deterministic fixtures.
 - Avoid real secrets.
 - Avoid relying on unstable external services in CI.
-
+- Mock external APIs behind typed client ports.

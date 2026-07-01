@@ -13,6 +13,7 @@ Read:
 - `docs/quality/code-review.md`
 - Relevant architecture docs.
 - Relevant feature specification and acceptance criteria.
+- `docs/architecture/stack.md`
 
 ## Review Stance
 
@@ -24,6 +25,14 @@ Lead with findings. Prioritize:
 4. Missing tests or verification.
 5. Architecture drift.
 
+Stack-specific checks:
+
+- Auth uses Better Auth instead of custom password/session logic.
+- Database changes use Prisma migrations and PostgreSQL-compatible assumptions.
+- Package manager usage stays on pnpm/Corepack.
+- External HTTP calls are server-side, typed, and use Axios when tokens are involved.
+- Frontend forms use React Hook Form and Zod.
+
 ## Output Format
 
 - Findings first, ordered by severity.
@@ -32,4 +41,3 @@ Lead with findings. Prioritize:
 - Keep summaries secondary.
 
 If no issues are found, say so clearly and mention residual risk.
-

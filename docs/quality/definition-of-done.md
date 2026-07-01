@@ -9,6 +9,8 @@ A change is done only when:
 - New dependencies are justified.
 - Generated files are produced by scripts or documented sources, not manually edited.
 - No secrets are committed.
+- pnpm/Corepack commands were used.
+- Stack decisions remain aligned with `docs/architecture/stack.md` or an ADR explains the deviation.
 
 For backend work:
 
@@ -16,6 +18,9 @@ For backend work:
 - Domain code remains framework-free.
 - HTTP validation and error handling are explicit.
 - Protected endpoints use documented auth middleware.
+- Better Auth owns auth behavior.
+- Prisma migrations exist for schema changes.
+- PostgreSQL behavior is considered for production.
 
 For frontend work:
 
@@ -23,4 +28,5 @@ For frontend work:
 - Forms use validation.
 - Large lists are paginated or virtualized.
 - Text and controls fit on supported viewports.
-
+- shadcn/ui conventions are followed.
+- Authenticated and unauthenticated states are handled.

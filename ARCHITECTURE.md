@@ -2,19 +2,19 @@
 
 ## System Style
 
-Describe the dominant architecture:
+Default architecture:
 
-- Modular monolith
-- Distributed services
-- Event-driven system
-- API plus frontend
-- CLI/tooling
-- Other
+- Modular application with a TypeScript Express REST API and a TypeScript Next.js frontend.
+- PostgreSQL is the primary database.
+- Prisma owns database access and migrations.
+- Better Auth owns authentication.
+- External integrations are isolated behind typed infrastructure clients.
+- Background jobs are persisted when they must survive page refreshes or server restarts.
 
 ## Main Components
 
-- `{{COMPONENT_1}}`: responsibility.
-- `{{COMPONENT_2}}`: responsibility.
+- `backend/` or `src/`: Express API, application use cases, infrastructure adapters, auth, jobs, persistence.
+- `frontend/`: Next.js app, UI components, forms, charts, client-side state.
 - `docs/product/`: product specifications and domain knowledge.
 - `docs/architecture/`: technical decisions and boundaries.
 - `docs/plans/`: active and completed implementation plans.
@@ -50,9 +50,12 @@ Document the major boundaries:
 ## Detailed Documents
 
 - Architecture index: `docs/architecture/index.md`
+- Stack baseline: `docs/architecture/stack.md`
+- Bootstrap guide: `docs/architecture/bootstrap.md`
 - Backend: `docs/architecture/backend.md`
 - Frontend: `docs/architecture/frontend.md`
+- Authentication: `docs/architecture/authentication.md`
 - Database: `docs/architecture/database.md`
 - Integrations: `docs/architecture/integrations.md`
+- Deployment: `docs/architecture/deployment.md`
 - ADRs: `docs/architecture/adr/`
-

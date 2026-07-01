@@ -10,6 +10,7 @@ description: Use when changing database schema, persistence models, generated sc
 Read:
 
 - `docs/architecture/database.md`
+- `docs/architecture/stack.md`
 - Relevant feature spec.
 - `docs/security/principles.md`
 - Current migration policy for the project.
@@ -28,4 +29,5 @@ Read:
 - Destructive changes require an explicit data plan.
 - Production credentials should not stay overprivileged after initial setup.
 - Generated database clients or schema references must be regenerated, not hand edited.
-
+- PostgreSQL is the production target.
+- Prisma migrations are the default schema-change mechanism.
