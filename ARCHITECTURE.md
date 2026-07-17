@@ -54,6 +54,12 @@ Document the major boundaries:
 - Bootstrap guide: `docs/architecture/bootstrap.md`
 - Backend: `docs/architecture/backend.md`
 - Frontend: `docs/architecture/frontend.md`
+- Shared component contracts: `docs/architecture/component-system.md`
+- Interface design: `docs/architecture/interface-design.md`
+- Data tables: `docs/architecture/data-tables.md`
+- Forms and workflows: `docs/architecture/forms-and-workflows.md`
+- Feedback and states: `docs/architecture/feedback-and-states.md`
+- Navigation and responsive behavior: `docs/architecture/navigation-responsive.md`
 - Authentication: `docs/architecture/authentication.md`
 - Database: `docs/architecture/database.md`
 - Integrations: `docs/architecture/integrations.md`

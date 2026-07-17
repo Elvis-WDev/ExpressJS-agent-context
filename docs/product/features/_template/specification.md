@@ -30,6 +30,18 @@ Who uses this feature?
 
 - Routes, screens, commands, jobs, or integrations involved.
 
+## Interface Decisions
+
+- Primary user task:
+- Primary screen surface: table, focused form, dashboard, detail, or full-page workflow.
+- Information that must be visible for a decision:
+- Information that must remain hidden or backend-generated:
+- Search, filters, sorting, pagination, and row actions:
+- Create/edit interaction: modal, drawer, inline control, or full page, with reason:
+- Loading, empty, success, error, partial, and permission states:
+- Mobile and keyboard behavior:
+- Existing shared components to reuse:
+
 ## Out Of Scope
 
 - Explicitly excluded work.
@@ -37,4 +49,3 @@ Who uses this feature?
 ## Related Architecture
 
 - Link to architecture docs or ADRs.
-

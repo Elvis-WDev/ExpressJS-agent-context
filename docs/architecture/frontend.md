@@ -4,37 +4,76 @@
 
 - Framework: Next.js.
 - Language: TypeScript.
-- Styling: Tailwind CSS.
+- Styling: Tailwind CSS with semantic theme tokens.
 - Component system: shadcn/ui.
 - Icons: lucide-react.
-- Form handling: React Hook Form + Zod.
+- Form handling: React Hook Form and Zod.
+- Data tables: TanStack Table behind one shared application component.
+- Feedback: one shared semantic toast system.
 - Data fetching: typed API helpers over internal backend routes.
-- Charts: shadcn-compatible chart components for dashboards.
+- Charts: shadcn-compatible chart components when a chart answers a real question.
 
-## UI Rules
+## Product UI Principle
 
-- Use product screens as the first viewport for applications.
-- Keep large tables paginated or virtualized.
-- Keep forms validated and accessible.
-- Communicate loading, success, empty, and error states.
-- Do not expose server-only secrets.
-- Use shadcn/ui components before creating custom primitives.
-- Use icons for common actions when a familiar icon exists.
-- Use tables for dense operational data, not decorative card grids.
-- Keep dashboards informative: KPIs plus charts that transform data into decisions.
+Build the working product as the first screen. Operational applications should feel
+quiet, predictable, and efficient for repeated use. The interface exists to help a
+person scan, compare, decide, and act; it should not advertise its own implementation.
 
-## State
+Do not treat every dataset as a dashboard, every section as a card, or every action as
+a permanent panel. Choose the smallest surface that supports the workflow.
 
-- Server state: fetch through typed API helpers.
+## Required Pattern Documents
+
+Open only the documents relevant to the task:
+
+- Screen hierarchy and visual workload: `interface-design.md`.
+- Shared component inventory and contracts: `component-system.md`.
+- Lists, filters, columns, actions, and pagination: `data-tables.md`.
+- Forms, selectors, modals, drawers, and full-page workflows: `forms-and-workflows.md`.
+- Toasts, validation, loading, empty, error, and background-job states: `feedback-and-states.md`.
+- Sidebar, header, permissions, mobile, touch, and themes: `navigation-responsive.md`.
+- Completion audit: `../quality/frontend-checklist.md`.
+
+## State Ownership
+
+- Server state: typed query/mutation helpers with cancellation and invalidation.
 - Form state: React Hook Form.
-- Validation state: Zod schemas.
-- Local UI state: component state for transient interactions.
-- URL state: filters, pagination, or deep-linkable views when useful.
+- Validation: shared Zod schemas where client/server contracts permit reuse.
+- Local UI state: transient interaction only, such as an open dialog or temporary selection.
+- URL state: shareable search, filters, sorting, page, and active views when useful.
+- Persisted job state: backend-owned when work must survive navigation, refresh, or closing a modal.
 
-## Design System
+Do not mirror the same state across URL, form, component, and server caches without a
+single declared owner.
 
-- Components: shadcn/ui.
-- Icons: lucide-react.
-- Charts: shadcn chart conventions.
-- Motion: use sparingly for feedback and state transitions.
-- Theme: CSS variables and Tailwind tokens.
+## Component Policy
+
+1. Reuse an existing product component.
+2. Compose shadcn/ui primitives.
+3. Add a shared application component when at least two workflows need the same contract.
+4. Create a module-specific component only when its behavior is genuinely domain-specific.
+
+External registries may provide a starting point, but inspect installed code, remove
+demo assumptions, map colors to project tokens, verify accessibility, and align it with
+the existing component contract before use. Do not accumulate near-duplicate primitives.
+
+## Technical Information Boundary
+
+The frontend may carry internal IDs in values and requests, but should present labels,
+names, references, or searchable selectors. Backend-generated identifiers, database
+keys, provider names, storage locations, secret references, framework names, and raw
+metadata stay hidden unless the user has a documented operational reason to inspect them.
+
+Audit or developer tools may expose technical detail, but must remain permission-gated
+and visually distinct from normal product workflows.
+
+## Verification Baseline
+
+Before completion, exercise the screen with:
+
+- realistic, empty, loading, partial, failure, and unauthorized data;
+- long labels, long names, and the smallest supported viewport;
+- keyboard-only navigation and visible focus;
+- light and dark themes;
+- repeated submit clicks, slow requests, and stale responses;
+- the shared frontend checklist.

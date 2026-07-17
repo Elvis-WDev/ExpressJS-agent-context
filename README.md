@@ -66,6 +66,7 @@ Este repositorio le da al agente:
 - `docs/architecture/`: stack, bootstrap, backend, frontend, auth, database, deployment e integraciones.
 - `docs/plans/`: planes activos, completados y deuda tecnica.
 - `docs/quality/`: definicion de terminado, testing, code review y observabilidad.
+- `docs/quality/frontend-checklist.md`: revision visual, funcional, responsive y de accesibilidad antes de cerrar una interfaz.
 - `docs/security/`: principios y threat model.
 - `docs/generated/`: referencias generadas o derivadas.
 
@@ -151,7 +152,22 @@ Estas decisiones son intencionales y deben cambiarse solo con un ADR:
 - Los procedimientos repetitivos viven como skills.
 - Better Auth, PostgreSQL, Prisma, pnpm y TypeScript son decisiones base del stack.
 - El frontend debe construirse con componentes reales, formularios validados y estados claros.
+- Las interfaces operativas deben priorizar lectura, comparacion y accion: tablas consistentes, formularios enfocados, navegacion de dos niveles como maximo y feedback mediante estados transitorios.
+- Los detalles tecnicos pertenecen al backend, logs o auditoria; la UI muestra lenguaje de negocio y selecciones reconocibles por la persona usuaria.
 - El backend debe proteger boundaries: HTTP, auth, env, base de datos e integraciones externas.
+
+## Criterios de interfaz incluidos
+
+El repositorio incorpora criterios reutilizables aprendidos al construir paneles operativos grandes sin convertir cada pantalla en una acumulacion de controles:
+
+- Jerarquia visual y composicion de modulos: `docs/architecture/interface-design.md`.
+- Contratos de componentes compartidos: `docs/architecture/component-system.md`.
+- Data tables homogeneos: `docs/architecture/data-tables.md`.
+- Formularios, modales y flujos de pagina completa: `docs/architecture/forms-and-workflows.md`.
+- Toasts, validacion, carga, vacios y errores: `docs/architecture/feedback-and-states.md`.
+- Sidebar, header, responsive y dark mode: `docs/architecture/navigation-responsive.md`.
+- Checklist de aceptacion frontend: `docs/quality/frontend-checklist.md`.
+- Procedimiento para agentes: `.agents/skills/implement-operational-frontend/SKILL.md`.
 
 ## Nombre oficial
 

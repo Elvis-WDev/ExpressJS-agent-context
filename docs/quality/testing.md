@@ -19,6 +19,11 @@
 - Prisma repository behavior for critical writes.
 - PostgreSQL migration assumptions.
 - React Hook Form validation paths.
+- Table search, filters, sorting, pagination, column visibility, and row actions.
+- Modal focus management, dismissal, scroll containment, and submission states.
+- Toast semantics and retry behavior for successful and failed actions.
+- Responsive layout, long text, empty collections, large collections, and dark mode.
+- Permission-driven navigation and action visibility.
 
 ## Test Data
 

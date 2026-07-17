@@ -30,3 +30,9 @@ For frontend work:
 - Text and controls fit on supported viewports.
 - shadcn/ui conventions are followed.
 - Authenticated and unauthenticated states are handled.
+- Shared patterns are used for tables, pagination, filters, forms, dialogs, toasts, tooltips, date inputs, and navigation.
+- No raw IDs, storage paths, provider internals, auth implementation names, secret references, or backend-only metadata are exposed without a documented user need.
+- Module headings, summaries, cards, helper copy, and controls are not duplicated.
+- Action feedback is semantic and transient; persistent page banners are reserved for states that remain relevant after the action ends.
+- Row actions are permission-aware, state-aware, labeled by accessible tooltips, and usable with keyboard and touch.
+- Light/dark themes and desktop/mobile layouts pass `docs/quality/frontend-checklist.md`.
