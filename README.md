@@ -1,174 +1,209 @@
-# agent-ready-app-context
+# ExpressJS Agent Context
 
-Repositorio de contexto para construir aplicaciones modernas con agentes de IA de forma repetible, verificable y mantenible.
+Context engineering kit para construir aplicaciones fullstack con Express.js,
+Next.js y agentes de IA sin perder consistencia arquitectonica, calidad ni criterio de
+interfaz.
 
-`agent-ready-app-context` no es un starter de codigo. Es una base documental y operativa para que un desarrollador o agente de IA pueda iniciar cualquier aplicacion con una arquitectura clara, un stack recomendado y reglas de trabajo consistentes.
+Este repositorio no es un starter de codigo. Contiene un sistema de conocimiento en
+Markdown para que Codex, Claude, GitHub Copilot y otros agentes puedan entender como
+trabajar en un proyecto antes de modificarlo.
 
-Su proposito es evitar empezar cada proyecto desde cero en decisiones fundamentales como autenticacion, base de datos, estructura, documentacion, calidad, seguridad y flujo de trabajo con IA.
+## Por que existe
 
-## Para que sirve
+Un agente puede generar codigo rapidamente, pero sin contexto persistente suele:
 
-Sirve para crear nuevos sistemas con un contexto inicial robusto:
+- inventar patrones distintos en cada modulo;
+- mezclar reglas de negocio con infraestructura;
+- duplicar componentes y documentacion;
+- exponer detalles tecnicos en la interfaz;
+- omitir estados, permisos, pruebas o migraciones;
+- depender de conversaciones que el siguiente agente no conoce.
 
-- Define el stack tecnico recomendado.
-- Explica las buenas practicas base.
-- Organiza la documentacion del producto y arquitectura.
-- Da instrucciones a agentes como Codex, Claude o GitHub Copilot.
-- Incluye skills reutilizables para implementar features, crear migraciones, revisar codigo y actualizar documentacion.
-- Ayuda a que cada cambio tenga plan, implementacion, verificacion y documentacion.
-- Evita que el agente dependa de conversaciones pasadas o contexto invisible.
+Este repositorio convierte esas decisiones en instrucciones versionadas, navegables y
+verificables dentro del propio proyecto.
 
-## Para quien es
+## Que obtienes
 
-- Desarrolladores que quieren trabajar con agentes de IA sin perder control arquitectonico.
-- Equipos que quieren estandarizar la forma de iniciar aplicaciones fullstack.
-- Proyectos internos, SaaS, dashboards, CRMs, APIs, herramientas operativas o paneles administrativos.
-- Cualquier aplicacion que necesite autenticacion, base de datos, frontend moderno y backend REST.
+| Area          | Contexto incluido                                              |
+| ------------- | -------------------------------------------------------------- |
+| Agentes       | Instrucciones para Codex, Claude y GitHub Copilot              |
+| Arquitectura  | Express.js, Next.js, limites por capas e integraciones         |
+| Datos         | PostgreSQL, Prisma y migraciones versionadas                   |
+| Autenticacion | Better Auth y reglas para no reinventar sesiones               |
+| Frontend      | shadcn/ui, Tailwind, formularios, tablas y estados compartidos |
+| UX operativa  | Jerarquia visual, baja fatiga, responsive y accesibilidad      |
+| Calidad       | Definition of Done, testing, code review y observabilidad      |
+| Seguridad     | Principios, boundaries y threat model                          |
+| Ejecucion     | Planes activos, decisiones y skills reutilizables              |
 
-Este contexto define un stack recomendado y buenas practicas para nuevos sistemas:
+## Stack de referencia
 
-- **Runtime:** Node.js + TypeScript.
-- **Backend:** Express.js REST API con arquitectura por capas.
-- **Frontend:** Next.js + React + TypeScript.
-- **Auth:** Better Auth. No reinventar login, sesiones ni hashing.
-- **Base de datos:** PostgreSQL como base principal.
-- **ORM:** Prisma con migraciones versionadas.
-- **UI:** Tailwind CSS + shadcn/ui + iconos consistentes.
-- **Formularios:** React Hook Form + Zod.
-- **HTTP externo:** Axios con adaptadores tipados y tokens server-side.
-- **Package manager:** pnpm via Corepack.
-- **Deploy:** Docker-ready, compatible con plataformas como Dokploy.
+- Node.js y TypeScript.
+- Express.js para API REST.
+- Next.js y React para frontend.
+- Better Auth para identidad y sesiones.
+- PostgreSQL como base de datos principal.
+- Prisma para ORM y migraciones.
+- Tailwind CSS y shadcn/ui para interfaz.
+- React Hook Form y Zod para formularios.
+- Axios para integraciones HTTP server-side.
+- pnpm mediante Corepack.
+- Docker para desarrollo y despliegue.
 
-## Idea central
+El stack es una decision base, no una restriccion irreversible. Si un proyecto necesita
+desviarse, debe registrar la razon y sus consecuencias en un ADR.
 
-No se trata de escribir un prompt gigante. Se trata de disenar el repositorio como un sistema de conocimiento navegable.
+## Inicio rapido
 
-El agente debe recibir primero un mapa pequeno y despues abrir solo la documentacion relevante para la tarea.
+Para iniciar un proyecto nuevo desde esta base documental:
 
-Este repositorio le da al agente:
+```bash
+git clone --depth 1 https://github.com/Elvis-WDev/ExpressJS-agent-context.git context-template
+rsync -av --exclude='.git' context-template/ ruta/de/tu-proyecto/
+rm -rf context-template
+```
 
-- Un mapa corto de instrucciones permanentes.
-- Documentos versionados donde buscar contexto profundo.
-- Procedimientos reutilizables como skills.
-- Criterios de verificacion y definicion de terminado.
-- Lugares claros para registrar planes, decisiones y deuda tecnica.
+Luego completa, como minimo:
 
-## Que incluye
+1. Reemplaza `{{PROJECT_NAME}}` en `AGENTS.md`.
+2. Define proposito, usuarios y workflows en [docs/product/overview.md](docs/product/overview.md).
+3. Modela entidades y reglas en [docs/product/domain-model.md](docs/product/domain-model.md).
+4. Revisa el stack en [docs/architecture/stack.md](docs/architecture/stack.md).
+5. Ajusta los comandos reales de verificacion en `AGENTS.md`.
+6. Crea las primeras especificaciones bajo `docs/product/features/`.
+7. Registra trabajos no triviales en `docs/plans/active/`.
 
-- `AGENTS.md`: instrucciones base para agentes.
-- `ARCHITECTURE.md`: mapa arquitectonico de alto nivel.
-- `CLAUDE.md`: memoria equivalente para flujos con Claude.
-- `.agents/skills/`: procedimientos reutilizables bajo demanda.
-- `.github/copilot-instructions.md`: instrucciones base para GitHub Copilot.
-- `.github/instructions/`: reglas especificas por tipo de trabajo.
-- `.codex/README.md`: criterio para no mezclar configuracion con conocimiento del proyecto.
-- `docs/product/`: producto, dominio, glosario y features.
-- `docs/architecture/`: stack, bootstrap, backend, frontend, auth, database, deployment e integraciones.
-- `docs/plans/`: planes activos, completados y deuda tecnica.
-- `docs/quality/`: definicion de terminado, testing, code review y observabilidad.
-- `docs/quality/frontend-checklist.md`: revision visual, funcional, responsive y de accesibilidad antes de cerrar una interfaz.
-- `docs/security/`: principios y threat model.
-- `docs/generated/`: referencias generadas o derivadas.
+Si el proyecto ya existe, copia la estructura documental y adapta cada archivo a la
+arquitectura real antes de pedir cambios al agente.
 
-## Que no incluye
+## Como funciona el contexto
 
-- Codigo de aplicacion.
-- Dependencias.
-- Build output.
-- Configuracion real de secretos.
-- Logica de negocio de ningun dominio especifico.
-- Funcionalidades copiadas de un sistema existente.
+```text
+AGENTS.md
+  -> indica que leer y como trabajar
+ARCHITECTURE.md
+  -> muestra componentes, limites y dependencias
+docs/product/
+  -> explica que debe hacer el producto
+docs/architecture/
+  -> explica como debe construirse
+docs/plans/
+  -> conserva la estrategia de trabajos complejos
+.agents/skills/
+  -> ejecuta procedimientos repetibles
+docs/quality/ + docs/security/
+  -> define cuando un cambio es aceptable
+```
 
-Solo contiene archivos Markdown y estructura de carpetas.
-
-## Como usarlo en un proyecto nuevo
-
-1. Copia esta estructura en la raiz del nuevo proyecto.
-2. Edita `AGENTS.md` con el nombre real del producto y scripts disponibles.
-3. Lee `docs/architecture/bootstrap.md` para crear la base tecnica.
-4. Completa `docs/product/overview.md`.
-5. Crea una carpeta por feature en `docs/product/features/`.
-6. Registra trabajos complejos en `docs/plans/active/`.
-7. Implementa usando el stack documentado.
-8. Actualiza docs junto con el codigo.
-9. Mueve planes terminados a `docs/plans/completed/`.
-10. Convierte errores repetidos del agente en reglas, tests, linters o skills.
+La idea no es cargar todo el repositorio en cada prompt. El agente empieza con un mapa
+pequeno y abre solamente la fuente de verdad relevante para la tarea.
 
 ## Flujo recomendado con agentes
 
-1. Pedir al agente que lea `AGENTS.md`.
-2. Pedirle que abra solo los documentos relevantes.
-3. Para tareas grandes, pedirle un plan en `docs/plans/active/`.
-4. Implementar cambios pequenos y coherentes.
-5. Ejecutar verificacion.
-6. Actualizar documentacion.
-7. Registrar decisiones importantes en ADRs.
+1. Leer `AGENTS.md` y las instrucciones mas cercanas al codigo afectado.
+2. Abrir la especificacion y arquitectura relacionadas con la tarea.
+3. Crear o actualizar un plan cuando el trabajo sea no trivial.
+4. Implementar el cambio coherente mas pequeno.
+5. Ejecutar formato, lint, tipos, pruebas y build.
+6. Actualizar documentacion y referencias derivadas.
+7. Registrar decisiones costosas o duraderas mediante ADR.
+8. No declarar terminado mientras implementacion, pruebas y documentacion difieran.
 
-## Decisiones base del stack
+Ejemplo de solicitud inicial:
 
-Estas decisiones son intencionales y deben cambiarse solo con un ADR:
+```text
+Lee AGENTS.md y la documentacion relevante para esta tarea.
+Antes de editar, identifica la especificacion, los limites arquitectonicos y la
+Definition of Done. Implementa, verifica y actualiza la documentacion afectada.
+```
 
-- Better Auth para autenticacion.
-- PostgreSQL para produccion.
-- Prisma para ORM y migraciones.
-- pnpm/Corepack como package manager.
-- Express.js para REST API.
-- Next.js para frontend.
-- shadcn/ui y Tailwind CSS para UI.
-- React Hook Form + Zod para formularios.
-- Axios para integraciones externas server-side.
+## Skills incluidos
 
-## Estructura
+- `implement-feature`: implementar comportamiento desde especificacion hasta verificacion.
+- `create-migration`: cambiar modelos y datos mediante migraciones seguras.
+- `review-code`: revisar bugs, seguridad, regresiones, arquitectura y pruebas.
+- `update-documentation`: mantener fuentes de verdad y referencias sincronizadas.
+- `implement-operational-frontend`: construir interfaces operativas consistentes y sin sobrecarga visual.
+
+Los skills viven en `.agents/skills/` y se cargan solo cuando la tarea los necesita.
+
+## Criterio frontend
+
+El contexto incluye reglas concretas para evitar que paneles administrativos y
+aplicaciones operativas terminen como una acumulacion de cards, formularios, filtros y
+mensajes.
+
+- [Arquitectura frontend](docs/architecture/frontend.md)
+- [Sistema de componentes](docs/architecture/component-system.md)
+- [Diseno de interfaces operativas](docs/architecture/interface-design.md)
+- [Data tables](docs/architecture/data-tables.md)
+- [Formularios y workflows](docs/architecture/forms-and-workflows.md)
+- [Feedback y estados](docs/architecture/feedback-and-states.md)
+- [Navegacion y responsive](docs/architecture/navigation-responsive.md)
+- [Checklist frontend](docs/quality/frontend-checklist.md)
+
+Principios esenciales:
+
+- usar lenguaje de negocio y ocultar IDs o detalles internos;
+- mantener tablas, filtros, acciones y paginacion uniformes;
+- usar modales para CRUD breve y paginas completas para workflows complejos;
+- comunicar acciones con feedback semantico sin llenar la pagina de banners;
+- limitar la navegacion visible a dos niveles;
+- reutilizar componentes antes de crear variantes por modulo;
+- verificar desktop, mobile, teclado, light mode y dark mode;
+- eliminar contenido redundante que no ayude a decidir o actuar.
+
+## Mapa del repositorio
 
 ```text
 .
-├── AGENTS.md
-├── ARCHITECTURE.md
-├── CLAUDE.md
-├── README.md
-├── .agents/
-│   └── skills/
-├── .codex/
-│   └── README.md
-├── .github/
-│   ├── copilot-instructions.md
-│   └── instructions/
+├── AGENTS.md                       # Reglas permanentes para agentes
+├── ARCHITECTURE.md                 # Mapa tecnico de alto nivel
+├── CLAUDE.md                       # Entrada para Claude
+├── .agents/skills/                 # Procedimientos reutilizables
+├── .github/                        # Instrucciones para Copilot
+├── .codex/                         # Configuracion, no conocimiento del producto
 └── docs/
-    ├── product/
-    ├── architecture/
-    ├── plans/
-    ├── quality/
-    ├── security/
-    └── generated/
+    ├── product/                    # Producto, dominio y features
+    ├── architecture/               # Stack, boundaries y patrones
+    ├── plans/                      # Trabajo activo, completado y deuda
+    ├── quality/                    # Testing, review y Definition of Done
+    ├── security/                   # Principios y amenazas
+    └── generated/                  # Referencias derivadas
 ```
 
-## Principios
+## Fuentes de verdad
 
-- `AGENTS.md` es un mapa, no una enciclopedia.
-- `docs/` es la fuente de verdad del proyecto.
+- [Guia para agentes](AGENTS.md)
+- [Mapa de arquitectura](ARCHITECTURE.md)
+- [Indice de documentacion](docs/README.md)
+- [Indice de arquitectura](docs/architecture/index.md)
+- [Definition of Done](docs/quality/definition-of-done.md)
+- [Principios de seguridad](docs/security/principles.md)
+
+## Que no incluye
+
+- Codigo de una aplicacion concreta.
+- Requerimientos de un dominio o cliente.
+- Dependencias instaladas o build output.
+- Secretos, credenciales o variables de entorno reales.
+- Una arquitectura inmutable que deba aplicarse sin evaluar contexto.
+
+El repositorio contiene solamente contexto Markdown reutilizable. Cada aplicacion debe
+completar sus especificaciones de producto y mantenerlas junto al codigo.
+
+## Reglas que no deben romperse
+
+- `AGENTS.md` es un mapa corto, no una enciclopedia.
+- `docs/` conserva el conocimiento durable del proyecto.
 - Las instrucciones cercanas al codigo tienen prioridad sobre las globales.
-- Las decisiones importantes se versionan junto al sistema.
-- Las reglas criticas deben convertirse en automatizacion cuando sea posible.
-- Los procedimientos repetitivos viven como skills.
-- Better Auth, PostgreSQL, Prisma, pnpm y TypeScript son decisiones base del stack.
-- El frontend debe construirse con componentes reales, formularios validados y estados claros.
-- Las interfaces operativas deben priorizar lectura, comparacion y accion: tablas consistentes, formularios enfocados, navegacion de dos niveles como maximo y feedback mediante estados transitorios.
-- Los detalles tecnicos pertenecen al backend, logs o auditoria; la UI muestra lenguaje de negocio y selecciones reconocibles por la persona usuaria.
-- El backend debe proteger boundaries: HTTP, auth, env, base de datos e integraciones externas.
+- Los secretos permanecen fuera del repositorio y del frontend.
+- Los cambios de base de datos usan migraciones.
+- Las reglas criticas se convierten en tests, linters o automatizacion.
+- Un cambio no esta terminado sin implementacion, verificacion y documentacion coherentes.
+- Los errores repetidos del agente deben transformarse en contexto o controles ejecutables.
 
-## Criterios de interfaz incluidos
+---
 
-El repositorio incorpora criterios reutilizables aprendidos al construir paneles operativos grandes sin convertir cada pantalla en una acumulacion de controles:
-
-- Jerarquia visual y composicion de modulos: `docs/architecture/interface-design.md`.
-- Contratos de componentes compartidos: `docs/architecture/component-system.md`.
-- Data tables homogeneos: `docs/architecture/data-tables.md`.
-- Formularios, modales y flujos de pagina completa: `docs/architecture/forms-and-workflows.md`.
-- Toasts, validacion, carga, vacios y errores: `docs/architecture/feedback-and-states.md`.
-- Sidebar, header, responsive y dark mode: `docs/architecture/navigation-responsive.md`.
-- Checklist de aceptacion frontend: `docs/quality/frontend-checklist.md`.
-- Procedimiento para agentes: `.agents/skills/implement-operational-frontend/SKILL.md`.
-
-## Nombre oficial
-
-**agent-ready-app-context**
+Construido para que el siguiente agente no tenga que adivinar las decisiones que el
+equipo ya tomo.
